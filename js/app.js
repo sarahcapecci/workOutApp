@@ -6,23 +6,11 @@ var workoutApp = angular.module('optionSelected', []);
 
 workoutApp.controller('SelectListController', function ($scope) {
 
-    // //Sorting array by Make
-    // $scope.carsSorted = dreamCars.sort(function(a,b){
-    //     var x = a.make;
-    //     var y = b.make;
-    //     return ((x < y) ? -1 : ((x > y) ? 1 : 0));
-    // });
-    // //Sorting array by Model
-    // $scope.carsSortedByModel = $scope.carsSorted.sort(function(a,b){
-    //     var x = a.model;
-    //     var y = b.model;
-    //     return ((x < y) ? -1 : ((x > y) ? 1 : 0));
-    // });
 
     $scope.workOutList = availableWorkouts;
     $scope.chosenWorkouts = chosenWorkouts;
 
-    $scope.addCar = function(selectedWorkout){
+    $scope.addWorkout = function(selectedWorkout){
         //adds selected car to wishlist
         selectedWorkout = $scope.optionSelected;
         workoutIndex = $scope.workOutList.indexOf(selectedWorkout);
@@ -34,18 +22,7 @@ workoutApp.controller('SelectListController', function ($scope) {
             $scope.chosenWorkouts.push(selectedWorkout);
             //remove this car from selectable options
             $scope.workOutList.splice(workoutIndex, 1);
-      
-          // Logic behind select box:
-            // for (var i = 0; i < $scope.workOutList.length; i++) {
-            //    if (selectedCarMake === $scope.carsList[i].make) {
-            //        //displays next car from the same make when there is any remaining
-            //        $scope.optionSelected = $scope.carsList[i];
-            //          break;
-            //     } else {
-            //       //if there's no more cars of this make, then default option
-            //       $scope.optionSelected = document.getElementById('default-option');
-            //     }
-            // };    
+          
          }
       };
 });
@@ -57,11 +34,25 @@ workoutApp.directive('workOutDetail', function(){
     controller: function($scope){
       $scope.selectedWorkouts = chosenWorkouts;
     },
-    controllerAs: 'workout'
+    controllerAs: 'workout',
+    replace: true
   };
 });
 
-workoutApp.controller('WishListController', ['$scope', function($scope){
+workoutApp.directive('newWorkout', function(){
+  return {
+    restrict: 'E',
+    templateUrl: 'new-workout.html',
+    controller: function($scope){
+
+    },
+    controllerAs: 'newWorkoutCtrl',
+    replace: true
+  };
+
+});
+
+workoutApp.controller('SelectedListController', ['$scope', function($scope){
   $scope.selectedWorkouts = chosenWorkouts;
   $scope.workOutList = availableWorkouts;
 
@@ -74,8 +65,8 @@ workoutApp.controller('WishListController', ['$scope', function($scope){
   };
 
    // Sort by specification HP and Top Speed
-   // $scope.predicate = 'horsePower';
-   // $scope.predicate = 'topSpeed';
+   $scope.predicate = 'difficulty';
+   $scope.predicate = 'length';
 
    //Changing Background color of the filter button
 

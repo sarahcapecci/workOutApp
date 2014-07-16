@@ -13,19 +13,21 @@
 	  <select id="select" title="options" ng-model="optionSelected" ng-options="workout.name for workout in workOutList| orderBy: name" >
 	  <option id="default-option"value="" ng-disabled="true">Choose one</option>
 	  </select>
-	  <input type="submit" value="Add" ng-click="addCar(selectedWorkout)"/>
+	  <input type="submit" value="Add" ng-click="addWorkout(selectedWorkout)"/>
 	</div>
 
-	<div id="wishList" ng-controller="WishListController as wishListCtrl">
-	<h2>My wish list</h2>
+	<div id="wishList" ng-controller="SelectedListController as selectedListCtrl">
+	<h2>Workouts Selected</h2>
 	<div class="sort" >
 	  <span>Sort by</span>
-	  <button ng-class="{active: wishListCtrl.isSelected(1)}" ng-click="predicate = '-difficulty'; reverse=false; wishListCtrl.selectTab(1)">Difficulty</button>
-	  <button ng-class="{active: wishListCtrl.isSelected(2)}" ng-click="predicate = '-length'; reverse=false; wishListCtrl.selectTab(2)">Approx. Length</button>
+	  <button ng-class="{active: selectedListCtrl.isSelected(1)}" ng-click="predicate = 'difficulty'; reverse=true; selectedListCtrl.selectTab(1)">Difficulty</button>
+	  <button ng-class="{active: selectedListCtrl.isSelected(2)}" ng-click="predicate = 'length'; reverse=true; selectedListCtrl.selectTab(2)">Approx. Length</button>
 	</div>
 
 	<work-out-detail>
 	</work-out-detail>
+
+	<button ng-click="">Add a workout!</button>
 	</div>
 
     <body>

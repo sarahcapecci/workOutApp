@@ -4,7 +4,7 @@ availableWorkouts = [
 	exercises: ["Running", "Pull-ups", "Push-ups", "Bodyweight Squat", "Running, Treadmill"],
 	reps: ["1 mile", "100 reps", "200 reps", "300 reps", "1 mile"],
 	rounds: 1,
-	weight: [0, 0, 0, 0, 0],
+	weight: ["Body weight", "Body weight", "Body weight", "Body weight", "Body weight"],
 	help: ["http://www.bodybuilding.com/exercises/main/popup/name/running-treadmill", "http://www.bodybuilding.com/exercises/main/popup/name/pullups", "http://www.bodybuilding.com/exercises/main/popup/name/pushups", "http://www.bodybuilding.com/exercises/main/popup/name/bodyweight-squat", "http://www.bodybuilding.com/exercises/main/popup/name/running-treadmill"],
 	length: 8,
 	difficulty: 7
@@ -34,7 +34,7 @@ availableWorkouts = [
 	exercises: ["Pull-ups", "Push-ups", "Sit-ups", "Squats"],
 	reps: ["20 reps", "30 reps", "40 reps", "50 reps" ],
 	rounds: 5,
-	weight: [0,0,0,0],
+	weight: ["Body weight","Body weight","Body weight","Body weight"],
 	help: ["http://www.bodybuilding.com/exercises/main/popup/name/pullups", "http://www.bodybuilding.com/exercises/main/popup/name/pushups", "https://www.youtube.com/watch?v=_HPfXutjB1s", "http://www.bodybuilding.com/exercises/main/popup/name/bodyweight-squat"],
 	length: 6,
 	difficulty: 5

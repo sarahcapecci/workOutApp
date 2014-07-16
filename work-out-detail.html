@@ -3,11 +3,13 @@
   <p><strong>{{workout.name}}</strong></p>
   <ul ng-repeat="exercise in workout.exercises track by $id(exercise)">
 	  <li>{{exercise}}</li>
-	  <li ng-model="workout.exercises[$index]">{{workout.help[$index]}}</li>
+	  <li ng-model="workout.exercises[$index]">{{workout.reps[$index]}}</li>
+	  <li ng-model="workout.exercises[$index]">Weigth: {{workout.weight[$index]}}</li>
+	  <li ng-model="workout.exercises[$index]">Demonstration of the <a ng-href="{{workout.help[$index]}}" target="_blank">exercise</a></li>
   </ul>
-  <p>{{workout.rounds}}</p>
-  <p>{{workout.difficulty}}</p>
-  <p>{{workout.length}}</p>
+  <p>Rounds: {{workout.rounds}}</p>
+  <p>Difficulty: {{workout.difficulty}}</p>
+  <p>Approx. length: {{workout.length}}</p>
   <a class="remove" ng-click="removeItem(workout)">Remove</a>
 </li>
 </ul>
