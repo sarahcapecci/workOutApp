@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Workout Choices</title>
+        <link rel="stylesheet" href="styles/main.css">
+    </head>
+	<body ng-app="workoutApp">
+	<div id="options" ng-controller="SelectListController as workout">
+	<h1>Select workouts you want to do:</h1>
+	  <select id="select" title="options" ng-model="optionSelected" ng-options="workout.name for workout in workOutList| orderBy: name" >
+	  <option id="default-option"value="" ng-disabled="true">Choose one</option>
+	  </select>
+	  <input type="submit" value="Add" ng-click="addCar(selectedWorkout)"/>
+	</div>
+
+	<div id="wishList" ng-controller="WishListController as wishListCtrl">
+	<h2>My wish list</h2>
+	<div class="sort" >
+	  <span>Sort by</span>
+	  <button ng-class="{active: wishListCtrl.isSelected(1)}" ng-click="predicate = '-difficulty'; reverse=false; wishListCtrl.selectTab(1)">Difficulty</button>
+	  <button ng-class="{active: wishListCtrl.isSelected(2)}" ng-click="predicate = '-length'; reverse=false; wishListCtrl.selectTab(2)">Approx. Length</button>
+	</div>
+
+	<work-out-detail>
+	</work-out-detail>
+	</div>
+
+    <body>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
+          <script src="js/workouts.js"></script>
+           <script src="js/app.js"></script>
+    </body>
+</html>

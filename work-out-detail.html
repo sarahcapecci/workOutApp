@@ -1,0 +1,9 @@
+<ul title="My Dream Cars">
+<li class="item" ng-repeat="workout in selectedWorkouts | orderBy: predicate">
+  <p><strong>{{workout.name}}</strong></p>
+  <ul ng-repeat="exercise in workout.exercises">
+	  <li>{{exercise.exercises}}</li>
+  </ul>
+  <a class="remove" ng-click="removeItem(workout)">Remove</a>
+</li>
+</ul>
