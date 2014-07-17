@@ -18,7 +18,7 @@ workoutApp.controller('SelectListController', function ($scope) {
         if (selectedWorkout === document.getElementById('default-option')) {
             return false;
          } else {
-            //adds this car to wish list
+            //adds this workout to to-do list
             $scope.chosenWorkouts.push(selectedWorkout);
             //remove this car from selectable options
             $scope.workOutList.splice(workoutIndex, 1);
@@ -43,8 +43,8 @@ workoutApp.directive('newWorkout', function(){
   return {
     restrict: 'E',
     templateUrl: 'new-workout.html',
-    controller: function($scope){
-
+    controller: function(){
+      this.showForm = false;
     },
     controllerAs: 'newWorkoutCtrl',
     replace: true
@@ -56,7 +56,7 @@ workoutApp.controller('SelectedListController', ['$scope', function($scope){
   $scope.selectedWorkouts = chosenWorkouts;
   $scope.workOutList = availableWorkouts;
 
-  //removes the car from wish list and makes it visible again in the select-options
+  //removes workout from to-do and makes it visible again in the select options
 
   $scope.removeItem = function(workout){
   index = $scope.selectedWorkouts.indexOf(workout);
@@ -64,7 +64,7 @@ workoutApp.controller('SelectedListController', ['$scope', function($scope){
   $scope.workOutList.push(workout);
   };
 
-   // Sort by specification HP and Top Speed
+   // Sort by specification Difficulty and Length
    $scope.predicate = 'difficulty';
    $scope.predicate = 'length';
 

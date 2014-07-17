@@ -27,8 +27,10 @@
 	<work-out-detail>
 	</work-out-detail>
 
-	<button ng-click="">Add a workout!</button>
+	<button ng-click="newWorkoutCtrl.showForm = !newWorkoutCtrl.showForm">{{newWorkoutCtrl.showForm ? "Cancel" : "Add a Workout"}}</button>
 	</div>
+
+	<new-workout ng-show="newWorkoutCtrl.showForm"></new-workout>
 
     <body>
         
