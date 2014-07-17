@@ -1,19 +1,20 @@
-
-	<form action="" ng-submit="" ng-show="">
-		<label for="">Name</label>
-		<input type="text">
-		<button ng-click="">Add exercise</button>
-		<label for="">Exercise</label>
-		<input type="text">
-		<label for="">Reps</label>
-		<input type="text">
-		<label for="">Rounds</label>
-		<input type="text">
-		<label for="">Weight</label>
-		<input type="text">
-		<label for="">Difficulty</label>
-		<select name="" id="" min="0" max="10"></select>
-		<label for="">Approx. Length</label>
-		<select name="" id="" min="0" max="10"></select>
-		<input type="submit" value="Add">
-	</form>
+<form>
+	<label for="">Name</label>
+	<input type="text" ng-model="myForm.name">
+	<button ng-click="">Add exercise</button>
+	<label for="">Exercise</label>
+	<input type="text" ng-model="myForm.exercises">
+	<label for="">Reps</label>
+	<input type="text" ng-model="myForm.reps">
+	<label for="">Rounds</label>
+	<input type="text" ng-model="myForm.rounds">
+	<label for="">Weight</label>
+	<input type="text" ng-model="myForm.weight">
+	<label for="">Difficulty</label>
+	<select ng-model="myForm.difficulty"ng-options="number as number for number in newWorkoutCtrl.range" name="" id="">
+	</select>
+	<label for="">Approx. Length</label>
+	<select ng-model="myForm.length"ng-options="number as number for number in newWorkoutCtrl.range" name="" id="">
+	</select>
+	<input type="submit" value="Add" ng-click="newWorkoutCtrl.addWorkout(myForm)">
+</form>

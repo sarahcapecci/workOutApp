@@ -1,7 +1,7 @@
 //Angular Application
 
-var workoutApp = angular.module('workoutApp', ['optionSelected']);
-
+var workoutApp = angular.module('workoutApp', ['optionSelected', 'myForm']);
+var workoutApp = angular.module('myForm', []);
 var workoutApp = angular.module('optionSelected', []);
 
 workoutApp.controller('SelectListController', function ($scope) {
@@ -42,9 +42,28 @@ workoutApp.directive('workOutDetail', function(){
 workoutApp.directive('newWorkout', function(){
   return {
     restrict: 'E',
+    require: 'myForm',
     templateUrl: 'new-workout.html',
     controller: function(){
       this.showForm = false;
+      this.range = [1,2,3,4,5,6,7,8,9,10];
+      this.addWorkout = function(myForm){
+        var newWorkout = {
+          name: myForm.name,
+          exercises: myForm.exercises,
+          reps: myForm.reps,
+          rounds: myForm.rounds,
+          weight: myForm.weight,
+          help: myForm.help,
+          length: myForm.length,
+          difficulty: myForm.difficulty
+
+        };
+
+        console.log(newWorkout);
+
+        // form.$setPristine();
+      };
     },
     controllerAs: 'newWorkoutCtrl',
     replace: true
