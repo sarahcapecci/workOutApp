@@ -47,6 +47,7 @@ workoutApp.directive('newWorkout', function(){
     controller: function(){
       this.showForm = false;
       this.range = [1,2,3,4,5,6,7,8,9,10];
+
       this.addWorkout = function(myForm){
         var newWorkout = {
           name: myForm.name,
@@ -57,18 +58,16 @@ workoutApp.directive('newWorkout', function(){
           help: myForm.help,
           length: myForm.length,
           difficulty: myForm.difficulty
-
         };
+
 
         console.log(newWorkout);
 
-        // form.$setPristine();
       };
     },
     controllerAs: 'newWorkoutCtrl',
     replace: true
   };
-
 });
 
 workoutApp.controller('SelectedListController', ['$scope', function($scope){
