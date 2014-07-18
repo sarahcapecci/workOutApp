@@ -30,7 +30,7 @@ workoutApp.controller('SelectListController', function ($scope) {
 workoutApp.directive('workOutDetail', function(){
   return {
     restrict: 'E',
-    templateUrl: 'work-out-detail.html',
+    templateUrl: 'partials/work-out-detail.html',
     controller: function($scope){
       $scope.selectedWorkouts = chosenWorkouts;
     },
@@ -43,7 +43,7 @@ workoutApp.directive('newWorkout', function(){
   return {
     restrict: 'E',
     require: 'myForm',
-    templateUrl: 'new-workout.html',
+    templateUrl: 'partials/new-workout.html',
     controller: function(){
       this.showForm = false;
       this.range = [1,2,3,4,5,6,7,8,9,10];
@@ -59,14 +59,24 @@ workoutApp.directive('newWorkout', function(){
           length: myForm.length,
           difficulty: myForm.difficulty
         };
-
-
-        console.log(newWorkout);
-
+      console.log(newWorkout);
       };
     },
-    controllerAs: 'newWorkoutCtrl',
-    replace: true
+    controllerAs: 'newWorkoutCtrl'
+  };
+});
+
+workoutApp.directive('newExercise', function(){
+  return {
+    restrict: 'E',
+    templateUrl: 'partials/new-exercise.html',
+    controller: function(){
+      this.showFields = false;
+      this.addExercise = function(){
+        console.log("yes");
+      };
+    },
+    controllerAs: 'newExerciseCtrl'
   };
 });
 
