@@ -27,58 +27,19 @@ workoutApp.controller('SelectListController', function ($scope) {
       };
 });
 
-workoutApp.directive('workOutDetail', function(){
-  return {
-    restrict: 'E',
-    templateUrl: 'partials/work-out-detail.html',
-    controller: function($scope){
-      $scope.selectedWorkouts = chosenWorkouts;
-    },
-    controllerAs: 'workout',
-    replace: true
-  };
-});
 
-workoutApp.directive('newWorkout', function(){
-  return {
-    restrict: 'E',
-    require: 'myForm',
-    templateUrl: 'partials/new-workout.html',
-    controller: function(){
-      this.showForm = false;
-      this.range = [1,2,3,4,5,6,7,8,9,10];
+// workoutApp.directive('newExercise', function(){
+//   return {
+//     restrict: 'E',
+//     templateUrl: 'partials/new-exercise.html',
+//     controller: function(){
+//       this.showFields = false;
 
-      this.addWorkout = function(myForm){
-        var newWorkout = {
-          name: myForm.name,
-          exercises: myForm.exercises,
-          reps: myForm.reps,
-          rounds: myForm.rounds,
-          weight: myForm.weight,
-          help: myForm.help,
-          length: myForm.length,
-          difficulty: myForm.difficulty
-        };
-      console.log(newWorkout);
-      };
-    },
-    controllerAs: 'newWorkoutCtrl'
-  };
-});
 
-workoutApp.directive('newExercise', function(){
-  return {
-    restrict: 'E',
-    templateUrl: 'partials/new-exercise.html',
-    controller: function(){
-      this.showFields = false;
-      this.addExercise = function(){
-        console.log("yes");
-      };
-    },
-    controllerAs: 'newExerciseCtrl'
-  };
-});
+//     },
+//     controllerAs: 'newExerciseCtrl'
+//   };
+// });
 
 workoutApp.controller('SelectedListController', ['$scope', function($scope){
   $scope.selectedWorkouts = chosenWorkouts;
@@ -109,3 +70,57 @@ workoutApp.controller('SelectedListController', ['$scope', function($scope){
       return this.tab === checkTab;
    };
 }]);
+
+
+// form
+
+
+workoutApp.directive('workOutDetail', function(){
+  return {
+    restrict: 'E',
+    templateUrl: 'partials/work-out-detail.html',
+    controller: function($scope){
+      $scope.selectedWorkouts = chosenWorkouts;
+    },
+    controllerAs: 'workout',
+    replace: true
+  };
+});
+
+workoutApp.directive('newWorkout', function(){
+  return {
+    restrict: 'EA',
+    templateUrl: 'partials/new-workout.html',
+    controller: function(){
+      this.showForm = false;
+      this.range = [1,2,3,4,5,6,7,8,9,10];
+
+      this.addWorkout = function(myForm){
+        var newWorkout = {
+          name: myForm.name,
+          exercises: myForm.exercises,
+          reps: myForm.reps,
+          rounds: myForm.rounds,
+          weight: myForm.weight,
+          help: myForm.help,
+          length: myForm.length,
+          difficulty: myForm.difficulty
+        };
+      console.log(newWorkout);
+      };
+
+      this.addFields = function(item){
+        if (typeof myForm.exercises === 'undefined') {
+          myForm.exercises = {};
+        } else {
+          console.log(myForm.exercises);
+          myForm.exercises.push({ exercises: '', reps: '', rounds: '', help: '', length: '', difficulty: '' });     
+        }
+
+      };
+
+    },
+    controllerAs: 'newWorkoutCtrl',
+    replace: true
+  };
+});

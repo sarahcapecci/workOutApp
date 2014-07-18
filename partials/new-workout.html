@@ -1,8 +1,38 @@
 <form name="myForm">
 	<label for="">Name</label>
 	<input type="text" ng-model="myForm.name">
-	<button ng-click="newExerciseCtrl.showFields = !newExerciseCtrl.showFields">{{newExerciseCtrl.showFields ? "Remove" : "Add new exercise"}}</button>
-	<new-exercise ng-show="newExerciseCtrl.showFields">	
-	</new-exercise>
+	<div ng-repeat="item in myForm.exercises track by $id(item)">
+		<label for="">Exercise</label>
+		<input type="text" ng-model="myForm.exercises[$index]">
+		<label for="">Reps</label>
+		<input type="text" ng-model="myForm.reps[$index]">
+		<label for="">Rounds</label>
+		<input type="text" ng-model="myForm.rounds[$index]">
+		<label for="">Weight</label>
+		<input type="text" ng-model="myForm.weight[$index]">
+		<label for="">Difficulty</label>
+		<select ng-model="myForm.difficulty"ng-options="number as number for number in newWorkoutCtrl.range" name="" id="">
+		</select>
+		<label for="">Approx. Length</label>
+		<select ng-model="myForm.length" ng-options="number as number for number in newWorkoutCtrl.range" name="" id="">
+		</select>
+	</div>
+
+<!-- 		<label for="">Exercise</label>
+		<input type="text" ng-model="myForm.exercises[$index]">
+		<label for="">Reps</label>
+		<input type="text" ng-model="myForm.reps[$index]">
+		<label for="">Rounds</label>
+		<input type="text" ng-model="myForm.rounds[$index]">
+		<label for="">Weight</label>
+		<input type="text" ng-model="myForm.weight[$index]">
+		<label for="">Difficulty</label>
+		<select ng-model="myForm.difficulty"ng-options="number as number for number in newWorkoutCtrl.range" name="" id="">
+		</select>
+		<label for="">Approx. Length</label>
+		<select ng-model="myForm.length" ng-options="number as number for number in newWorkoutCtrl.range" name="" id="">
+		</select> -->
+
+	<button ng-click="newWorkoutCtrl.addFields(form)">Add Exercise</button>	
 	<input type="submit" value="Add" ng-click="newWorkoutCtrl.addWorkout(myForm)">
 </form>
