@@ -100,32 +100,34 @@ workoutApp.directive('newWorkout', function(){
 
       this.addFields = function(){
         this.newFields = [];
-        this.newFields.push({ exercises: '', reps: '', rounds: '', weight: ''
-        });     
+        this.newFields.push({ exercise: '', reps: '', rounds: '', weight: ''
+        });
+         
       };
 
       // This function adds a single exercise to the workout
         this.addSingleExercise = function() {
-          var newWorkout = {};
-          
-          
+          var newWorkout = [];
 
-          var newExercise = {
-            name: myForm.workoutName,
-            exercises: myForm.exercises,
-            reps: myForm.reps,
-            rounds: myForm.rounds,
-            weight: myForm.weight
-          };
-            
-       
+          var newExercise = this.newFields;
           console.log(newExercise);
 
+          newWorkout.push(newExercise);
+          console.log(newWorkout);
       };
 
       this.addWorkout = function(myForm){
-      };
 
+        var newWorkout = {
+        name: myForm.workoutName,
+        };
+
+        console.log(newWorkout);
+
+        this.addFields();
+
+
+      };
     },
     controllerAs: 'newWorkoutCtrl'
   };
