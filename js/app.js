@@ -100,33 +100,46 @@ workoutApp.directive('newWorkout', function(){
 
       this.addFields = function(){
         this.newFields = [];
-        this.newFields.push({ exercise: '', reps: '', rounds: '', weight: ''
+        this.newFields.push({ exercise: '', reps: '', weight: ''
         });
          
       };
+      
+      var newWorkout = [];
+      var exerciseArray = [];
+      var repsArray = [];
+      var weightArray = [];
 
       // This function adds a single exercise to the workout
-        this.addSingleExercise = function() {
-          var newWorkout = [];
+      this.addSingleExercise = function() {
 
-          var newExercise = this.newFields;
-          console.log(newExercise);
+        var newExercise = this.newFields;
 
-          newWorkout.push(newExercise);
-          console.log(newWorkout);
+        newWorkout.push(newExercise);
+        exerciseArray.push(newExercise[0].exercise);
+        repsArray.push(newExercise[0].reps);
+        weightArray.push(newExercise[0].weight);
+        console.log(exerciseArray, repsArray, weightArray);
+        this.addFields();
       };
+
+      // This function adds a new workout to the existing "Availabe Workouts"
 
       this.addWorkout = function(myForm){
 
         var newWorkout = {
         name: myForm.workoutName,
+        exercises: exerciseArray,
+        reps: repsArray,
+        rounds: myForm.rounds,
+        weight: weightArray,
+        length: myForm.length,
+        difficulty: myForm.difficulty
         };
 
         console.log(newWorkout);
-
-        this.addFields();
-
-
+        availableWorkouts.push(newWorkout);
+        this.showForm = false;
       };
     },
     controllerAs: 'newWorkoutCtrl'
