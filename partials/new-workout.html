@@ -7,8 +7,12 @@
 		  <li>{{detail.reps}}</li>
 		  <li>{{detail.weight}}</li>
 	  </ul>
-	<h2></h2>
-	<h2></h2>
+
+   <ul ng-repeat="preview in newWorkoutCtrl.newExercise[0] track by $id(preview)">
+  	  <li ng-model="preview.exercise[$index]">Exercise: {{preview.exercise[$index]}}</li>
+  	  <li ng-model="preview.reps[$index]"> Reps: {{preview.reps[$index]}}</li>
+    </ul>
+
 </div>
 <form name="myForm">
 	<label for="">Name</label>

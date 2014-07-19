@@ -113,9 +113,11 @@ workoutApp.directive('newWorkout', function(){
       this.addSingleExercise = function() {
         var newExercise = this.newFields;
         newWorkout.push(newExercise);
+
         exerciseArray.push(newExercise[0].exercise);
         repsArray.push(newExercise[0].reps);
         weightArray.push(newExercise[0].weight);
+        console.log(newWorkout);
         this.addFields();
       };
 
