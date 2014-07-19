@@ -95,32 +95,38 @@ workoutApp.directive('newWorkout', function(){
       this.showForm = false;
       this.range = [1,2,3,4,5,6,7,8,9,10];
 
-      this.addWorkout = function(myForm){
-        var newWorkout = {
-          name: myForm.name,
-          exercises: myForm.exercises,
-          reps: myForm.reps,
-          rounds: myForm.rounds,
-          weight: myForm.weight,
-          help: myForm.help,
-          length: myForm.length,
-          difficulty: myForm.difficulty
-        };
-      console.log(newWorkout);
+      
+      // this function adds fields to the form, so the user can add another single exercise (enables the above function)
+
+      this.addFields = function(){
+        this.newFields = [];
+        this.newFields.push({ exercises: '', reps: '', rounds: '', weight: ''
+        });     
       };
 
-      this.addFields = function(item){
-        if (typeof myForm.exercises === 'undefined') {
-          myForm.exercises = {};
-        } else {
-          console.log(myForm.exercises);
-          myForm.exercises.push({ exercises: '', reps: '', rounds: '', help: '', length: '', difficulty: '' });     
-        }
+      // This function adds a single exercise to the workout
+        this.addSingleExercise = function() {
+          var newWorkout = {};
+          
+          
 
+          var newExercise = {
+            name: myForm.workoutName,
+            exercises: myForm.exercises,
+            reps: myForm.reps,
+            rounds: myForm.rounds,
+            weight: myForm.weight
+          };
+            
+       
+          console.log(newExercise);
+
+      };
+
+      this.addWorkout = function(myForm){
       };
 
     },
-    controllerAs: 'newWorkoutCtrl',
-    replace: true
+    controllerAs: 'newWorkoutCtrl'
   };
 });
