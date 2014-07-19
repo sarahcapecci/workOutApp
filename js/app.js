@@ -72,9 +72,6 @@ workoutApp.controller('SelectedListController', ['$scope', function($scope){
 }]);
 
 
-// form
-
-
 workoutApp.directive('workOutDetail', function(){
   return {
     restrict: 'E',
@@ -86,6 +83,8 @@ workoutApp.directive('workOutDetail', function(){
     replace: true
   };
 });
+
+// form logic
 
 workoutApp.directive('newWorkout', function(){
   return {
@@ -112,14 +111,11 @@ workoutApp.directive('newWorkout', function(){
 
       // This function adds a single exercise to the workout
       this.addSingleExercise = function() {
-
         var newExercise = this.newFields;
-
         newWorkout.push(newExercise);
         exerciseArray.push(newExercise[0].exercise);
         repsArray.push(newExercise[0].reps);
         weightArray.push(newExercise[0].weight);
-        console.log(exerciseArray, repsArray, weightArray);
         this.addFields();
       };
 
@@ -137,7 +133,6 @@ workoutApp.directive('newWorkout', function(){
         difficulty: myForm.difficulty
         };
 
-        console.log(newWorkout);
         availableWorkouts.push(newWorkout);
         this.showForm = false;
       };

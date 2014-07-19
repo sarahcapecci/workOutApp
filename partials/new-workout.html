@@ -1,23 +1,21 @@
 <div>
 <h3>Workout Preview</h3>
-
 	<h2>Name: {{myForm.workoutName}}</h2>
-<!-- 	<h2>Details</h2>
-	 <ul ng-repeat="exercise in workout.exercises track by $id(exercise)">
-		  <li>{{myForm.exercise}}</li>
-		  <li ng-model="workout.exercises[$index]">{{workout.reps[$index]}}</li>
-		  <li ng-model="workout.exercises[$index]">Weigth: {{workout.weight[$index]}}</li>
-		  <li ng-model="workout.exercises[$index]">Demonstration<a ng-href="{{workout.help[$index]}}" target="_blank"> here</a></li>
+	<h2>Details</h2>
+	 <ul ng-repeat="detail in newWorkoutCtrl.newFields">
+		  <li>{{detail.exercise}}</li>
+		  <li>{{detail.reps}}</li>
+		  <li>{{detail.weight}}</li>
 	  </ul>
 	<h2></h2>
-	<h2></h2> -->
+	<h2></h2>
 </div>
 <form name="myForm">
 	<label for="">Name</label>
 	<input type="text" ng-model="myForm.workoutName">
 	<button ng-click="newWorkoutCtrl.addFields()">Add an exercise</button>	
 	<!-- NEW FIELDS -->
-	{{newWorkoutCtrl.newFields}}
+
 	<ng-form name="subForm" ng-repeat="myForm in newWorkoutCtrl.newFields">
 		<label for="">Exercise</label>
 		<input type="text" name="exercise" ng-model="myForm.exercise">
