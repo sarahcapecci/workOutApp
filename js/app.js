@@ -28,19 +28,6 @@ workoutApp.controller('SelectListController', function ($scope) {
 });
 
 
-// workoutApp.directive('newExercise', function(){
-//   return {
-//     restrict: 'E',
-//     templateUrl: 'partials/new-exercise.html',
-//     controller: function(){
-//       this.showFields = false;
-
-
-//     },
-//     controllerAs: 'newExerciseCtrl'
-//   };
-// });
-
 workoutApp.controller('SelectedListController', ['$scope', function($scope){
   $scope.selectedWorkouts = chosenWorkouts;
   $scope.workOutList = availableWorkouts;
@@ -51,7 +38,10 @@ workoutApp.controller('SelectedListController', ['$scope', function($scope){
   index = $scope.selectedWorkouts.indexOf(workout);
   $scope.selectedWorkouts.splice(index, 1);
   $scope.workOutList.push(workout);
+  $scope.optionSelected = document.getElementById('default-option');
   };
+
+
 
    // Sort by specification Difficulty and Length
    $scope.predicate = 'difficulty';
@@ -59,15 +49,12 @@ workoutApp.controller('SelectedListController', ['$scope', function($scope){
 
    //Changing Background color of the filter button
 
-   //initializes with most recently added filter
-   this.tab = 1;
-
-   this.selectTab = function(setTab) {
-      this.tab = setTab;
+   $scope.selectTab = function(setTab) {
+      $scope.tab = setTab;
    };
 
-   this.isSelected = function(checkTab){
-      return this.tab === checkTab;
+   $scope.isSelected = function(checkTab){
+      return $scope.tab === checkTab;
    };
 }]);
 
@@ -84,7 +71,7 @@ workoutApp.directive('workOutDetail', function(){
   };
 });
 
-// form logic
+// Logic behind form. Adding fields, displaying preview of workout and adding workout to available list
 
 workoutApp.directive('newWorkout', function(){
   return {
@@ -92,6 +79,7 @@ workoutApp.directive('newWorkout', function(){
     templateUrl: 'partials/new-workout.html',
     controller: function(){
       this.showForm = false;
+      // range for the select fields
       this.range = [1,2,3,4,5,6,7,8,9,10];
 
       
@@ -99,16 +87,12 @@ workoutApp.directive('newWorkout', function(){
 
       this.addFields = function(){
         this.newFields = [];
-        this.newFields.push({ exercise: '', reps: '', weight: ''
+        this.newFields.push({ exercise: '', reps: '', weight: '', help: ''
         });
+        // hides "add an exercise" button
+        this.active = "inactive";
       };
 
-      // this.updatePreview = function(){
-      //   this.preview = [];
-      //   this.preview.push(newWorkout);
-      //   console.log(preview);
-      // };
-      
       var newWorkout = [];
       var exerciseArray = [];
       var repsArray = [];
@@ -119,19 +103,22 @@ workoutApp.directive('newWorkout', function(){
       this.addSingleExercise = function() {
         var newExercise = this.newFields;
         newWorkout.push(newExercise[0]);
+        this.preview = newWorkout;
+
+        // adds exercises and specifications to arrays
         exerciseArray.push(newExercise[0].exercise);
         repsArray.push(newExercise[0].reps);
         weightArray.push(newExercise[0].weight);
         helpArray.push(newExercise[0].help);
-        this.preview = newWorkout;
+        // empty input fields
         this.addFields();
-        // this.updatePreview();
       };
 
-      // This function adds a new workout to the existing "Availabe Workouts"
+// This function adds a new workout to the existing "Availabe Workouts"
 
       this.addWorkout = function(myForm){
 
+        // Organizing exercises information to add to available workout
         var newWorkout = {
         name: myForm.workoutName,
         exercises: exerciseArray,
@@ -143,9 +130,15 @@ workoutApp.directive('newWorkout', function(){
         difficulty: myForm.difficulty
         };
 
+        // Adding workout to available workout list
         availableWorkouts.push(newWorkout);
-        // this.showWorkout();
+
+        // hides form when user adds workout to available list
         this.showForm = false;
+
+        // form validation
+        this.submitted = true;
+
       };
     },
     controllerAs: 'newWorkoutCtrl'

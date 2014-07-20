@@ -1,47 +1,41 @@
 <div>
 <h2>Workout Preview</h2>
-	<h2>Name: {{myForm.workoutName}}</h2>
-	<h2>Details</h2>
-<!-- 	 <ul ng-repeat="detail in newWorkoutCtrl.newFields">
-		  <li>{{detail.exercise}}</li>
-		  <li>{{detail.reps}}</li>
-		  <li>{{detail.weight}}</li>
-	  </ul> -->
 	<h3>Name: {{myForm.workoutName}}</h3>
    	<ul ng-repeat="workout in newWorkoutCtrl.preview">
   	  <li>Exercise: {{workout.exercise}}</li>
+  	  <li>Reps: {{workout.reps}}</li>
   	  <li>Weight: {{workout.weight}}</li>
   	  <li>Help link: {{workout.help}}</li>
     </ul>
-    <ul>
-  	  <li>Approx. Length: {{myForm.length}}</li>
-  	  <li>Difficulty:{{myForm.difficulty}}</li>
-    </ul>
-
+    <span>Rounds: {{myForm.rounds}}</span>
+  	<span>Approx. Length: {{myForm.length}}</span>
+  	<span>Difficulty: {{myForm.difficulty}}</span>
 </div>
-<form name="myForm">
+<form name="myForm" novalidate>
 	<label for="">Name</label>
-	<input type="text" ng-model="myForm.workoutName">
-	<button ng-click="newWorkoutCtrl.addFields()">Add an exercise</button>	
+	<input type="text" ng-model="myForm.workoutName" ng-minlength="3" required>
+	<span class="error">Required field</span>
+	<button ng-click="newWorkoutCtrl.addFields()" ng-class="newWorkoutCtrl.active">Add an exercise</button>	
 	<!-- NEW FIELDS -->
-
 	<ng-form name="subForm" ng-repeat="myForm in newWorkoutCtrl.newFields">
-		<label for="">Exercise</label>
-		<input type="text" name="exercise" ng-model="myForm.exercise" >
-		<label for="">Reps</label>
-		<input type="text" name="reps" ng-model="myForm.reps" >
-		<label for="">Weight</label>
-		<input type="text" name="weigth" ng-model="myForm.weight" >
-		<input type="text" name="help" ng-model="myForm.help" >
+		<label for="exercise">Exercise</label>
+		<input type="text" name="exercise" ng-model="myForm.exercise" ng-minlength="3" required>
+		<label for="reps">Reps</label>
+		<input type="text" name="reps" ng-model="myForm.reps" ng-minlength="1"required>
+		<label for="weight">Weight</label>
+		<input type="text" name="weigth" ng-model="myForm.weight" ng-minlength="1" required>
+		<label for="help">Help link</label>
+		<input type="url" name="help" ng-model="myForm.help" >
 		<button ng-click="newWorkoutCtrl.addSingleExercise()">Add this to Workout</button>
 	</ng-form>
-	<label for="">Total rounds</label>
-	<input type="text" ng-model="myForm.rounds">
-	<label for="">Difficulty</label>
-	<select ng-model="myForm.difficulty" ng-options="number as number for number in newWorkoutCtrl.range" name="difficulty" id="">
+	<label for="rounds">Total rounds</label>
+	<select ng-model="myForm.rounds" ng-options="number as number for number in newWorkoutCtrl.range" name="rounds" id="" required>
+	</select>
+	<label for="difficulty">Difficulty</label>
+	<select ng-model="myForm.difficulty" ng-options="number as number for number in newWorkoutCtrl.range" name="difficulty" id="" required>
 	</select>
 	<label for="">Approx. length</label>
-	<select ng-model="myForm.length" ng-options="number as number for number in newWorkoutCtrl.range" name="length" id="">
+	<select ng-model="myForm.length" ng-options="number as number for number in newWorkoutCtrl.range" name="length" id="" required>
 	</select>
-	<input type="submit" value="Done" ng-click="newWorkoutCtrl.addWorkout(myForm)">
+	<input type="submit" class="submit" value="Done" ng-click="newWorkoutCtrl.addWorkout(myForm.$valid)">
 </form>

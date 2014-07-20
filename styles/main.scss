@@ -1,0 +1,71 @@
+@import url(http://fonts.googleapis.com/css?family=Raleway:400,700);
+
+$gray: #364B50;
+$blue-green: #0D8391;
+$light-blue: #B1D5D3;
+$almost-white: #D2E2D9;
+
+.inactive {
+	display: none;
+}
+
+
+body {
+	background: $almost-white url(../img/wavegrid.png) repeat;
+}
+
+body, input, textarea, button, select, option {
+	font-family: 'Raleway', Arial, sans-serif;
+	color: $gray;
+}
+
+button {
+	color: $light-blue;
+	background-color: $blue-green;
+	border: none;
+	padding: 6px;
+	cursor: pointer;
+	transition: all 0.5s ease;
+
+	&:active {
+		border: none;
+	}
+
+	&:hover {
+		background-color: $almost-white;
+		color: $blue-green;
+	}
+}
+
+.submit {
+	background-color: $light-blue;
+	color: $blue-green;
+	border: none;
+	padding: 8px;
+	width: 50px;
+	border-radius: 2px;
+	cursor: pointer;
+	vertical-align: middle;
+	transition: all 0.5s ease;
+	&:focus {
+	border: 1px solid $almost-white;
+	outline: none;
+	}
+	&:hover {
+		background-color: $blue-green;
+		color: $light-blue;
+	}
+}
+
+.remove {
+	color: red;
+	font-size: 14px;
+	cursor: pointer;
+}
+
+select {
+	width: 230px;
+	height: 30px;
+	font-size: 22px;
+	vertical-align: middle;
+}

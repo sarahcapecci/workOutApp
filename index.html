@@ -5,24 +5,23 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Workout Choices</title>
-<!--         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"> -->
         <link rel="stylesheet" href="styles/main.css">
     </head>
 	<body ng-app="workoutApp">
 	<div id="options" ng-controller="SelectListController as workout">
-	<h1>Select workouts you want to do:</h1>
+	<h1>Select workouts below</h1>
 	  <select id="select" title="options" ng-model="optionSelected" ng-options="workout.name for workout in workOutList| orderBy: name" >
-	  <option id="default-option"value="" ng-disabled="true">Choose one</option>
+	  <option id="default-option" value="" ng-disabled="true">Choose one</option>
 	  </select>
-	  <input type="submit" value="Add" ng-click="addWorkout(selectedWorkout)"/>
+	  <input class="submit" type="submit" value="Add" ng-click="addWorkout(selectedWorkout)"/>
 	</div>
 
 	<div id="wishList" ng-controller="SelectedListController as selectedListCtrl">
 	<h2>Workouts Selected</h2>
 	<div class="sort" >
 	  <span>Sort by</span>
-	  <button ng-class="{active: selectedListCtrl.isSelected(1)}" ng-click="predicate = 'difficulty'; reverse=true; selectedListCtrl.selectTab(1)">Difficulty</button>
-	  <button ng-class="{active: selectedListCtrl.isSelected(2)}" ng-click="predicate = 'length'; reverse=true; selectedListCtrl.selectTab(2)">Approx. Length</button>
+	  <button ng-class="{active: selectedListCtrl.isSelected(1)}" ng-click="predicate = 'difficulty'; reverse=false; selectedListCtrl.selectTab(1)">Difficulty</button>
+	  <button ng-class="{active: selectedListCtrl.isSelected(2)}" ng-click="predicate = 'length'; reverse=false; selectedListCtrl.selectTab(2)">Approx. Length</button>
 	</div>
 
 	<work-out-detail>
