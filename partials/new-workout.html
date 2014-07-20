@@ -1,16 +1,21 @@
 <div>
-<h3>Workout Preview</h3>
+<h2>Workout Preview</h2>
 	<h2>Name: {{myForm.workoutName}}</h2>
 	<h2>Details</h2>
-	 <ul ng-repeat="detail in newWorkoutCtrl.newFields">
+<!-- 	 <ul ng-repeat="detail in newWorkoutCtrl.newFields">
 		  <li>{{detail.exercise}}</li>
 		  <li>{{detail.reps}}</li>
 		  <li>{{detail.weight}}</li>
-	  </ul>
-
-   <ul ng-repeat="preview in newWorkoutCtrl.newExercise[0] track by $id(preview)">
-  	  <li ng-model="preview.exercise[$index]">Exercise: {{preview.exercise[$index]}}</li>
-  	  <li ng-model="preview.reps[$index]"> Reps: {{preview.reps[$index]}}</li>
+	  </ul> -->
+	<h3>Name: {{myForm.workoutName}}</h3>
+   	<ul ng-repeat="workout in newWorkoutCtrl.preview">
+  	  <li>Exercise: {{workout.exercise}}</li>
+  	  <li>Weight: {{workout.weight}}</li>
+  	  <li>Help link: {{workout.help}}</li>
+    </ul>
+    <ul>
+  	  <li>Approx. Length: {{myForm.length}}</li>
+  	  <li>Difficulty:{{myForm.difficulty}}</li>
     </ul>
 
 </div>
@@ -22,11 +27,12 @@
 
 	<ng-form name="subForm" ng-repeat="myForm in newWorkoutCtrl.newFields">
 		<label for="">Exercise</label>
-		<input type="text" name="exercise" ng-model="myForm.exercise">
+		<input type="text" name="exercise" ng-model="myForm.exercise" >
 		<label for="">Reps</label>
-		<input type="text" name="reps" ng-model="myForm.reps">
+		<input type="text" name="reps" ng-model="myForm.reps" >
 		<label for="">Weight</label>
-		<input type="text" name="weigth" ng-model="myForm.weight">
+		<input type="text" name="weigth" ng-model="myForm.weight" >
+		<input type="text" name="help" ng-model="myForm.help" >
 		<button ng-click="newWorkoutCtrl.addSingleExercise()">Add this to Workout</button>
 	</ng-form>
 	<label for="">Total rounds</label>

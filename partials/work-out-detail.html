@@ -1,5 +1,4 @@
-<ul title="My Workouts">
-<li class="item" ng-repeat="workout in selectedWorkouts">
+<div class="item" ng-repeat="workout in selectedWorkouts">
   <p><strong>{{workout.name}}</strong></p>
   <ul ng-repeat="exercise in workout.exercises track by $id(exercise)">
 	  <li>{{exercise}}</li>
@@ -11,5 +10,4 @@
   <p>Difficulty: {{workout.difficulty}}</p>
   <p>Approx. length: {{workout.length}}</p>
   <a class="remove" ng-click="removeItem(workout)">Remove</a>
-</li>
-</ul>
+</div>

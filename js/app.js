@@ -101,24 +101,31 @@ workoutApp.directive('newWorkout', function(){
         this.newFields = [];
         this.newFields.push({ exercise: '', reps: '', weight: ''
         });
-         
       };
+
+      // this.updatePreview = function(){
+      //   this.preview = [];
+      //   this.preview.push(newWorkout);
+      //   console.log(preview);
+      // };
       
       var newWorkout = [];
       var exerciseArray = [];
       var repsArray = [];
       var weightArray = [];
+      var helpArray = [];
 
       // This function adds a single exercise to the workout
       this.addSingleExercise = function() {
         var newExercise = this.newFields;
-        newWorkout.push(newExercise);
-
+        newWorkout.push(newExercise[0]);
         exerciseArray.push(newExercise[0].exercise);
         repsArray.push(newExercise[0].reps);
         weightArray.push(newExercise[0].weight);
-        console.log(newWorkout);
+        helpArray.push(newExercise[0].help);
+        this.preview = newWorkout;
         this.addFields();
+        // this.updatePreview();
       };
 
       // This function adds a new workout to the existing "Availabe Workouts"
@@ -131,11 +138,13 @@ workoutApp.directive('newWorkout', function(){
         reps: repsArray,
         rounds: myForm.rounds,
         weight: weightArray,
+        help: helpArray,
         length: myForm.length,
         difficulty: myForm.difficulty
         };
 
         availableWorkouts.push(newWorkout);
+        // this.showWorkout();
         this.showForm = false;
       };
     },
