@@ -2,7 +2,7 @@
   <p><strong>{{workout.name}}</strong></p>
   <ul class="chosen-workout-details" ng-repeat="exercise in workout.exercises track by $id(exercise)">
 	  <li>{{exercise}}</li>
-	  <li ng-model="workout.exercises[$index]">{{workout.reps[$index]}}</li>
+	  <li ng-model="workout.exercises[$index]">Reps:{{workout.reps[$index]}}</li>
 	  <li ng-model="workout.exercises[$index]">Weight: {{workout.weight[$index]}}</li>
 	  <li ng-model="workout.exercises[$index]">Demonstration <a class="help" ng-href="{{workout.help[$index]}}" target="_blank">here</a></li>
   </ul>

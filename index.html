@@ -20,7 +20,12 @@
 		<select id="select" class="selectbox" title="options" ng-model="optionSelected" ng-options="workout.name for workout in workOutList| orderBy: name" >
 		<option id="default-option" value="" ng-disabled="true">Choose one</option></select>
 		<input class="submit" type="submit" value="Add" ng-click="addWorkout(selectedWorkout)"/>
+	<span class="add-workout">Didn't find a good workout?
+		<button ng-class="{'cancel' : newWorkoutCtrl.showForm != false}" ng-click="newWorkoutCtrl.showForm = !newWorkoutCtrl.showForm">{{newWorkoutCtrl.showForm ? "Cancel" : "Add new"}}</button>
+	</span>
 	</div>
+
+	<new-workout ng-show="newWorkoutCtrl.showForm"></new-workout> 
 
 	<div id="workoutList" ng-controller="SelectedListController as selectedListCtrl">
 	<h2>Your workouts</h2>
@@ -29,15 +34,15 @@
 	  <button ng-click="predicate = 'difficulty'; reverse=false; selectedListCtrl.selectTab(1)" ng-class="{ 'selected' : selectedListCtrl.isSelected(1)}">Difficulty</button>
 	  <button ng-click="predicate = 'length'; reverse=false; selectedListCtrl.selectTab(2)" ng-class="{'selected': selectedListCtrl.isSelected(2)}">Approx. Length</button>
 	</div>
-
 		<work-out-detail>
 		</work-out-detail>
-		<span class="add-workout">Didn't find a good workout?
-		<button ng-class="{'cancel' : newWorkoutCtrl.showForm != false}" ng-click="newWorkoutCtrl.showForm = !newWorkoutCtrl.showForm">{{newWorkoutCtrl.showForm ? "Cancel" : "Add new"}}</button></span>
 	</div>
-	<new-workout ng-show="newWorkoutCtrl.showForm"></new-workout> 
+
+	<!-- Hey, are you a developer too? You can check this project's code here: https://github.com/sarahcapecci/workOutApp  :) -->
   	<script src="js/angular-min.js"></script>
   	<script src="js/workouts.js"></script>
-  	<script src="js/app.js"></script>
+  	<script src="js/modules.js"></script>
+  	<script src="js/controllers.js"></script>
+  	<script src="js/directives.js"></script>
     </body>
 </html>
