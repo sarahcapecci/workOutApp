@@ -84,7 +84,7 @@ workoutApp.directive('newWorkout', function(){
       this.addWorkout = function(myForm){
 
         // Organizing exercises information to add to available workout
-        if(myForm.$valid && myForm.$dirty){
+        if(subForm.$valid && myForm.$valid && myForm.$dirty){
           var newWorkout = {
           name: myForm.workoutName,
           exercises: exerciseArray,
@@ -103,7 +103,7 @@ workoutApp.directive('newWorkout', function(){
           this.showForm = false;
 
         } else {
-          console.log("nops!");
+          this.globalFormError = true;         
 
         }
 
