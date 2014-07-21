@@ -114,6 +114,15 @@ workoutApp.directive('newWorkout', function(){
         this.addFields();
       };
 
+      // Removes single exercise from workout preview
+
+      this.removeExercise = function(workout){
+      index = newWorkout.indexOf(workout);
+      newWorkout.splice(index, 1);
+      console.log(workout);
+      console.log(index);
+      };
+
 // This function adds a new workout to the existing "Availabe Workouts"
 
       this.addWorkout = function(myForm){
@@ -136,7 +145,7 @@ workoutApp.directive('newWorkout', function(){
         // hides form when user adds workout to available list
         this.showForm = false;
 
-        // form validation
+        // form validation - not completed
         this.submitted = true;
 
       };
