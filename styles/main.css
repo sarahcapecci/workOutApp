@@ -192,7 +192,12 @@ td, th {
 }
 
 .active {
-  background-color: blue;
+  display: block;
+}
+
+.selected {
+  background-color: deepskyblue;
+  color: white;
 }
 
 body {
@@ -230,11 +235,18 @@ h2 {
 }
 
 .add-workout {
-  float: right;
-  margin: 5% 0;
+  position: absolute;
+  right: 5px;
+  bottom: -30px;
+  margin: 5% 0 2% 0;
 }
 .add-workout:active {
   outline: none;
+}
+
+#workoutList {
+  position: relative;
+  padding-bottom: 30px;
 }
 
 .item {
@@ -244,10 +256,14 @@ h2 {
   vertical-align: top;
 }
 
+.help {
+  color: #0d8391;
+  font-weight: bold;
+}
+
 .chosen-workout-details {
   list-style-type: none;
   margin: 20px auto;
-  clear: both;
 }
 
 .sort {
@@ -274,6 +290,8 @@ h2 {
 
 label {
   margin: 2% auto;
+  padding: 5px 0;
+  position: relative;
 }
 
 .preview {
@@ -282,10 +300,11 @@ label {
 }
 
 .workout-preview {
-  width: 70%;
+  width: 50%;
   padding: 20px;
   background: white url(../img/grey.png);
   margin: 2% auto;
+  clear: both;
 }
 
 input, select {
@@ -300,8 +319,13 @@ input {
   padding: 5px;
 }
 
+.form-input {
+  position: absolute;
+  left: 125px;
+}
+
 button {
-  color: #b1d5d3;
+  color: white;
   background-color: #0d8391;
   border: none;
   border-radius: 2px;
@@ -319,13 +343,13 @@ button:hover {
 }
 
 .submit {
-  background-color: #b1d5d3;
-  color: #0d8391;
+  background-color: turquoise;
+  color: white;
   border: none;
   padding: 10px;
   display: block;
   margin: 2% auto;
-  width: 50px;
+  width: 20%;
   border-radius: 2px;
   cursor: pointer;
   vertical-align: middle;
@@ -338,7 +362,7 @@ button:hover {
 }
 .submit:hover {
   background-color: #0d8391;
-  color: #b1d5d3;
+  color: turquoise;
 }
 
 .form {
@@ -354,7 +378,7 @@ button:hover {
 }
 
 .selectbox {
-  width: 230px;
+  width: 50%;
   height: 30px;
 }
 

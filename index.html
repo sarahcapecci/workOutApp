@@ -11,7 +11,9 @@
 	<h1>App name here :)</h1>
 	<section id="instructions">
 		<h2>Instructions</h2>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum quidem, rem incidunt. Doloremque laborum repellendus quod. Ipsam, itaque corporis assumenda inventore reiciendis non! Possimus doloribus reprehenderit velit dolor, optio ut.</p>		
+		<p>In this app you can choose a workout from the list below or you can add your own customized workout to the list and then choose it.</p>
+		<h4>When adding an exercise:</h4>
+		<p>Difficulty should be chosen from 1 to 10 (1: easiest and 10: hardest)</p>		
 	</section>
 	<div id="options" ng-controller="SelectListController as workout">
 		<h2>Select workouts below</h2>
@@ -24,14 +26,14 @@
 	<h2>Your workouts</h2>
 	<div class="sort" >
 	  <span>Sort by</span>
-	  <button ng-class="{active: selectedListCtrl.isSelected(1)}" ng-click="predicate = 'difficulty'; reverse=false; selectedListCtrl.selectTab(1)">Difficulty</button>
-	  <button ng-class="{active: selectedListCtrl.isSelected(2)}" ng-click="predicate = 'length'; reverse=false; selectedListCtrl.selectTab(2)">Approx. Length</button>
+	  <button ng-click="predicate = 'difficulty'; reverse=false; selectedListCtrl.selectTab(1)" ng-class="{ 'selected' : selectedListCtrl.isSelected(1)}">Difficulty</button>
+	  <button ng-click="predicate = 'length'; reverse=false; selectedListCtrl.selectTab(2)" ng-class="{'selected': selectedListCtrl.isSelected(2)}">Approx. Length</button>
 	</div>
 
 		<work-out-detail>
 		</work-out-detail>
 		<span class="add-workout">Didn't find a good workout?
-		<button ng-class="{'cancel' : newWorkoutCtrl.showForm != false}" ng-click="newWorkoutCtrl.showForm = !newWorkoutCtrl.showForm">{{newWorkoutCtrl.showForm ? "Cancel" : "Add a Workout"}}</button></span>
+		<button ng-class="{'cancel' : newWorkoutCtrl.showForm != false}" ng-click="newWorkoutCtrl.showForm = !newWorkoutCtrl.showForm">{{newWorkoutCtrl.showForm ? "Cancel" : "Add new"}}</button></span>
 	</div>
 	<new-workout ng-show="newWorkoutCtrl.showForm"></new-workout> 
   	<script src="js/angular-min.js"></script>

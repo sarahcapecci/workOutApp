@@ -1,4 +1,6 @@
 //Angular Application
+// Hey, are you a developer too? You can check this project's code here: https://github.com/sarahcapecci/workOutApp  :)
+
 
 var workoutApp = angular.module('workoutApp', ['optionSelected', 'myForm']);
 var workoutApp = angular.module('myForm', []);
@@ -28,7 +30,7 @@ workoutApp.controller('SelectListController', function ($scope) {
 });
 
 
-workoutApp.controller('SelectedListController', ['$scope', function($scope){
+workoutApp.controller('SelectedListController', function($scope){
   $scope.selectedWorkouts = chosenWorkouts;
   $scope.workOutList = availableWorkouts;
 
@@ -41,22 +43,21 @@ workoutApp.controller('SelectedListController', ['$scope', function($scope){
   $scope.optionSelected = document.getElementById('default-option');
   };
 
-
-
    // Sort by specification Difficulty and Length
    $scope.predicate = 'difficulty';
    $scope.predicate = 'length';
 
    //Changing Background color of the filter button
+   this.tab = 0;
 
-   $scope.selectTab = function(setTab) {
-      $scope.tab = setTab;
+   this.selectTab = function(setTab) {
+      this.tab = setTab;
    };
 
-   $scope.isSelected = function(checkTab){
-      return $scope.tab === checkTab;
+   this.isSelected = function(checkTab){
+      return this.tab === checkTab;
    };
-}]);
+});
 
 
 workoutApp.directive('workOutDetail', function(){
@@ -80,17 +81,20 @@ workoutApp.directive('newWorkout', function(){
     controller: function(){
       this.showForm = false;
       // range for the select fields
-      this.range = [1,2,3,4,5,6,7,8,9,10];
+      this.scale = [1,2,3,4,5,6,7,8,9,10];
+      this.minutes = [5,10,15,20,25,30,35,40,45,50,60,70,80,90];
 
       
       // this function adds fields to the form, so the user can add another single exercise (enables the above function)
 
       this.addFields = function(){
+        this.showFields = true;
         this.newFields = [];
         this.newFields.push({ exercise: '', reps: '', weight: '', help: ''
         });
-        // hides "add an exercise" button
-        this.active = "inactive";
+
+        this.state = "active";
+
       };
 
       var newWorkout = [];
@@ -112,6 +116,11 @@ workoutApp.directive('newWorkout', function(){
         helpArray.push(newExercise[0].help);
         // empty input fields
         this.addFields();
+        
+        // hides "add an exercise" button
+        this.state = "inactive";
+        //hide "new exercise" fields
+        this.showFields = false;
       };
 
       // Removes single exercise from workout preview
@@ -135,7 +144,7 @@ workoutApp.directive('newWorkout', function(){
         rounds: myForm.rounds,
         weight: weightArray,
         help: helpArray,
-        length: myForm.length,
+        length: myForm.exLength,
         difficulty: myForm.difficulty
         };
 

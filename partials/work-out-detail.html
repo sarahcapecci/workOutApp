@@ -1,12 +1,12 @@
-<div class="item" ng-repeat="workout in selectedWorkouts">
+<div class="item" ng-repeat="workout in selectedWorkouts | orderBy: predicate">
   <p><strong>{{workout.name}}</strong></p>
   <ul class="chosen-workout-details" ng-repeat="exercise in workout.exercises track by $id(exercise)">
 	  <li>{{exercise}}</li>
 	  <li ng-model="workout.exercises[$index]">{{workout.reps[$index]}}</li>
-	  <li ng-model="workout.exercises[$index]">Weigth: {{workout.weight[$index]}}</li>
-	  <li ng-model="workout.exercises[$index]">Demonstration <a ng-href="{{workout.help[$index]}}" target="_blank">here</a></li>
+	  <li ng-model="workout.exercises[$index]">Weight: {{workout.weight[$index]}}</li>
+	  <li ng-model="workout.exercises[$index]">Demonstration <a class="help" ng-href="{{workout.help[$index]}}" target="_blank">here</a></li>
   </ul>
-  <p>Rounds: {{workout.rounds}}</p>
+  <p>Sets: {{workout.rounds}}</p>
   <p>Difficulty: {{workout.difficulty}}</p>
   <p>Approx. length: {{workout.length}}</p>
   <a class="remove" ng-click="removeItem(workout)">Remove</a>

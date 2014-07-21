@@ -6,7 +6,7 @@ availableWorkouts = [
 	rounds: 1,
 	weight: ["Body weight", "Body weight", "Body weight", "Body weight", "Body weight"],
 	help: ["http://www.bodybuilding.com/exercises/main/popup/name/running-treadmill", "http://www.bodybuilding.com/exercises/main/popup/name/pullups", "http://www.bodybuilding.com/exercises/main/popup/name/pushups", "http://www.bodybuilding.com/exercises/main/popup/name/bodyweight-squat", "http://www.bodybuilding.com/exercises/main/popup/name/running-treadmill"],
-	length: 8,
+	length: "50 minutes",
 	difficulty: 7
 },
 {
@@ -16,7 +16,7 @@ availableWorkouts = [
 	rounds: 3,
 	weight: ["95LB (men), 65LB (women)", "Bodyweight"],
 	help: ["http://www.bodybuilding.com/exercises/main/popup/name/kettlebell-thruster", "http://www.bodybuilding.com/exercises/main/popup/name/pullups"],
-	length: 5,
+	length: "25 minutes",
 	difficulty: 4	
 },
 {
@@ -26,7 +26,7 @@ availableWorkouts = [
 	rounds: 3,
 	weight: ["225LB", "Bodyweight"],
 	help: ["http://www.bodybuilding.com/exercises/main/popup/name/barbell-deadlift", "https://www.youtube.com/watch?v=_z6JgP219T8"],
-	length: 4,
+	length: "30 minutes",
 	difficulty: 6
 },
 {
@@ -36,7 +36,7 @@ availableWorkouts = [
 	rounds: 5,
 	weight: ["Body weight","Body weight","Body weight","Body weight"],
 	help: ["http://www.bodybuilding.com/exercises/main/popup/name/pullups", "http://www.bodybuilding.com/exercises/main/popup/name/pushups", "https://www.youtube.com/watch?v=_HPfXutjB1s", "http://www.bodybuilding.com/exercises/main/popup/name/bodyweight-squat"],
-	length: 6,
+	length: "60 minutes",
 	difficulty: 5
 },
 {
@@ -46,7 +46,7 @@ availableWorkouts = [
 	rounds: 10,
 	weight: ["1.5 body weight", "0.75 body weight", "body weight"],
 	help: ["http://www.bodybuilding.com/exercises/main/popup/name/barbell-deadlift", "http://www.bodybuilding.com/exercises/main/popup/name/power-clean-from-blocks", "http://www.bodybuilding.com/exercises/main/popup/name/barbell-bench-press-medium-grip"],
-	length: 9,
+	length: "60 minutes",
 	difficulty: 7
 
 },
@@ -57,7 +57,7 @@ availableWorkouts = [
 	rounds: 3,
 	weight: ["16LB", "95LB", 0],
 	help: ["http://www.bodybuilding.com/exercises/main/popup/name/one-arm-kettlebell-swings", "http://www.bodybuilding.com/exercises/main/popup/name/power-clean-from-blocks", "http://www.bodybuilding.com/exercises/main/popup/name/box-jump-multiple-response"],
-	length: 5,
+	length: "35 minutes",
 	difficulty: 5
 }
 ];
