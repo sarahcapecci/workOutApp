@@ -22,7 +22,13 @@ workoutApp.directive('newWorkout', function(){
       this.scale = [1,2,3,4,5,6,7,8,9,10];
       this.minutes = [5,10,15,20,25,30,35,40,45,50,60,70,80,90];
 
-      
+      var newWorkout = [];
+      var exerciseArray = [];
+      var repsArray = [];
+      var weightArray = [];
+      var helpArray = [];
+
+
       // this function adds fields to the form, so the user can add another single exercise (enables the above function)
 
       this.addFields = function(){
@@ -30,19 +36,18 @@ workoutApp.directive('newWorkout', function(){
         this.newFields = [];
         this.newFields.push({ exercise: '', reps: '', weight: '', help: ''
         });
-
         this.state = "active";
-
       };
 
-      var newWorkout = [];
-      var exerciseArray = [];
-      var repsArray = [];
-      var weightArray = [];
-      var helpArray = [];
 
       // This function adds a single exercise to the workout
       this.addSingleExercise = function(subForm) {
+        // workout preview
+
+        if (myForm.workoutName.$dirty) {
+          newWorkoutCtrl.previewWorkout = true;
+        }
+
         // Form validation:
         if(subForm.$valid && subForm.$dirty){
         var newExercise = this.newFields;
@@ -83,8 +88,10 @@ workoutApp.directive('newWorkout', function(){
 
       this.addWorkout = function(myForm){
 
+
         // Organizing exercises information to add to available workout
-        if(subForm.$valid && myForm.$valid && myForm.$dirty){
+
+        if(myForm.$valid && myForm.$dirty){
           var newWorkout = {
           name: myForm.workoutName,
           exercises: exerciseArray,

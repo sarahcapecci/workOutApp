@@ -1,6 +1,6 @@
-<div class="workout-preview">
+<div class="workout-preview" ng-show=" previewWorkout">
 	<h2>Workout Preview</h2>
-	<span class="preview"><strong>Name: {{myForm.workoutName}}</strong></span>
+	<span class="preview"><strong>Name: </strong>{{myForm.workoutName}}</span>
    	<ul ng-repeat="workout in newWorkoutCtrl.preview" class="chosen-workout-details">
   	  <li><strong>Exercise:</strong> {{workout.exercise}}</li>
   	  <li><strong>Reps:</strong> {{workout.reps}}</li>
@@ -8,7 +8,7 @@
   	  <li><strong>Help</strong><a class="help" ng-href="{{workout.help}}"> link</a></li>
   	  <span class="remove" ng-click="newWorkoutCtrl.removeExercise(workout)">Remove this</span>
     </ul>
-    <span class="block preview"><strong>Sets:</strong> {{myForm.rounds}}</span>
+    <span class="block preview"><strong>Sets:</strong> <span ng-bind="myForm.rounds"></span></span>
   	<span class="block preview"><strong>Difficulty:</strong> {{myForm.difficulty}}</span>
   	<span class="block preview"><strong>Approx. Length (minutes):</strong> {{myForm.exLength}}</span>
 </div>

@@ -3,6 +3,7 @@ workoutApp.controller('SelectListController', function ($scope) {
 
     $scope.workOutList = availableWorkouts;
     $scope.chosenWorkouts = chosenWorkouts;
+    $scope.optionSelected = document.getElementById('default-option');
 
     $scope.addWorkout = function(selectedWorkout){
         //adds selected car to wishlist
@@ -15,8 +16,7 @@ workoutApp.controller('SelectListController', function ($scope) {
             //adds this workout to to-do list
             $scope.chosenWorkouts.push(selectedWorkout);
             //remove this car from selectable options
-            $scope.workOutList.splice(workoutIndex, 1);
-          
+            $scope.workOutList.splice(workoutIndex, 1); 
          }
       };
 });
