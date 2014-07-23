@@ -23,15 +23,12 @@ workoutApp.directive('newWorkout', function(){
       this.scale = [1,2,3,4,5,6,7,8,9,10];
       this.minutes = [5,10,15,20,25,30,35,40,45,50,60,70,80,90];
 
-      // var myForm = {
-      // };
-
+      
+      //default values
       myForm.workoutName.value = "";
-      myForm.rounds = "";
-      myForm.difficulty = "";
-      myForm.exLength = "";
-
-      console.log(myForm.workoutName.value);
+      myForm.rounds.value = "";
+      myForm.difficulty.value = "";
+      myForm.exLength.value = "";
 
       var newWorkout = [];
       var exerciseArray = [];
@@ -48,15 +45,14 @@ workoutApp.directive('newWorkout', function(){
           this.newFields.push({ exercise: '', reps: '', weight: '', help: ''
           });
 
-          console.log(myForm.workoutName.value);
-
       };
 
+      // resets the form after a workout is added
       this.resetForm = function(){
-
+      
         this.newFields = [];
         newWorkout = [];
-        myForm.workoutName = "";
+        myForm.workoutName.value = "";
         myForm.rounds.value = "";
         myForm.difficulty.value = "";
         myForm.exLength.value = "";
@@ -65,18 +61,14 @@ workoutApp.directive('newWorkout', function(){
         weightArray = [];
         helpArray = [];
         this.preview = [];
-
       };
 
       // This function adds a single exercise to the workout
-      this.addSingleExercise = function() {
+      this.addSingleExercise = function(subForm) {
         
-        // workout preview
-          showPreview = true;
-          console.log(showPreview);
-        
+        if(subForm.$valid && subForm.$dirty) {
         var newExercise = this.newFields;
-        newWorkout.push(newExercise[newExercise.length - 1]);
+        newWorkout.push(newExercise[0]);
         this.preview = newWorkout;
 
         // adds exercises and specifications to arrays
@@ -89,9 +81,13 @@ workoutApp.directive('newWorkout', function(){
         
         //hide "new exercise" fields
         this.showFields = false;
-           
+        // clean previous error messages
+        this.formError = true;
 
-
+      } else {
+        this.formError = true;
+      }
+  
       };
 
       // Removes single exercise from workout preview
@@ -106,14 +102,13 @@ workoutApp.directive('newWorkout', function(){
 // This function adds a new workout to the existing "Availabe Workouts"
 
       this.addWorkout = function(myForm){
-
-
+        var subForm = myForm.subForm;
         // Organizing exercises information to add to available workout
 
-        this.addSingleExercise();
 
         if(myForm.$valid && myForm.$dirty){
           
+          this.addSingleExercise(subForm);
           newWorkout = {
           name: myForm.workoutName.value,
           exercises: exerciseArray,
@@ -132,14 +127,14 @@ workoutApp.directive('newWorkout', function(){
           // hides form when user adds workout to available list
           this.showForm = false;
 
+          // clear new workout fields
+          this.resetForm();
+
         } else {
           this.globalFormError = true;         
 
         }
 
-          // clear new workout fields
-
-          this.resetForm();
       };
     },
     controllerAs: 'newWorkoutCtrl'
