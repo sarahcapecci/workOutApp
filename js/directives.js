@@ -23,7 +23,8 @@ workoutApp.directive('newWorkout', function(){
       this.scale = [1,2,3,4,5,6,7,8,9,10];
       this.minutes = [5,10,15,20,25,30,35,40,45,50,60,70,80,90];
 
-      
+      console.log(myForm);
+      console.log(myForm.subForm);
       //default values
       myForm.workoutName.value = "";
       myForm.rounds.value = "";
@@ -53,6 +54,7 @@ workoutApp.directive('newWorkout', function(){
         this.newFields = [];
         newWorkout = [];
         myForm.workoutName.value = "";
+        console.log(myForm.workoutName.value);
         myForm.rounds.value = "";
         myForm.difficulty.value = "";
         myForm.exLength.value = "";
@@ -61,6 +63,9 @@ workoutApp.directive('newWorkout', function(){
         weightArray = [];
         helpArray = [];
         this.preview = [];
+
+        //erases previous global error messages
+        this.globalFormError = false;
       };
 
       // This function adds a single exercise to the workout
@@ -129,7 +134,6 @@ workoutApp.directive('newWorkout', function(){
 
           // clear new workout fields
           this.resetForm();
-
         } else {
           this.globalFormError = true;         
 

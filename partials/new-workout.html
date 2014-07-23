@@ -11,9 +11,9 @@
   	  <li><strong>Help</strong><a class="help" ng-href="{{workout.help}}"> link</a></li>
   	  <span class="remove" ng-click="newWorkoutCtrl.removeExercise(workout)">Remove this</span>
     </ul>
-    <span class="block preview"><strong>Sets:</strong>{{myForm.rounds.value}}</span>
-  	<span class="block preview"><strong>Difficulty:</strong> {{myForm.difficulty.value}}</span>
-  	<span class="block preview"><strong>Approx. Length (minutes):</strong> {{myForm.exLength.value}}</span>
+    <span class="block preview"><strong>Sets:<span ng-bind="myForm.rounds.value"></span></strong></span>
+  	<span class="block preview"><strong>Difficulty:<span ng-bind="myForm.difficulty.value"></span></strong></span>
+  	<span class="block preview"><strong>Approx. Length (minutes):<span ng-bind="myForm.exLength.value"></span></strong></span>
 </div>
 
 <form class="form" name="myForm" novalidate>
@@ -59,6 +59,6 @@
 
 		<button ng-click="newWorkoutCtrl.addSingleExercise(subForm)">Add exercise to Workout</button>
 	</div>
-	<span class="error block" ng-show="newWorkoutCtrl.globalFormError">There are errors in this form.</span>
+	<span class="error block" ng-show="newWorkoutCtrl.globalFormError">There are errors in this form. Make sure all the required fields are filled out correctly.</span>
 	<input type="submit" class="submit" value="Done" ng-click="newWorkoutCtrl.addWorkout(myForm)">
 </form>
