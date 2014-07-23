@@ -8,7 +8,7 @@ module.exports = function(grunt) {
 		pkg: grunt.file.readJSON('package.json'),
 		//lint my jS
 		jshint: {
-			all: ['js/app.js']
+			all: ['js/controllers.js', 'js/directives.js', 'js/modules.js']
 		},
 		//compile Sass
 		sass: { // Task                              
@@ -40,7 +40,7 @@ module.exports = function(grunt) {
 			    }
 			},
 			javascript: {
-				files: ['js/app.js'],
+				files: ['js/controllers.js', 'js/directives.js', 'js/modules.js'],
 				tasks: ['jshint'],
 				options: {
 					livereload: true

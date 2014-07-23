@@ -14,13 +14,24 @@ workoutApp.directive('workOutDetail', function(){
 
 workoutApp.directive('newWorkout', function(){
   return {
-    restrict: 'EA',
+    restrict: 'E',
+    transclude: true,
     templateUrl: 'partials/new-workout.html',
     controller: function(){
       this.showForm = false;
       // range for the select fields
       this.scale = [1,2,3,4,5,6,7,8,9,10];
       this.minutes = [5,10,15,20,25,30,35,40,45,50,60,70,80,90];
+
+      // var myForm = {
+      // };
+
+      myForm.workoutName.value = "";
+      myForm.rounds = "";
+      myForm.difficulty = "";
+      myForm.exLength = "";
+
+      console.log(myForm.workoutName.value);
 
       var newWorkout = [];
       var exerciseArray = [];
@@ -31,27 +42,41 @@ workoutApp.directive('newWorkout', function(){
 
       // this function adds fields to the form, so the user can add another single exercise (enables the above function)
 
-      this.addFields = function(){
-        this.showFields = true;
-        this.newFields = [];
-        this.newFields.push({ exercise: '', reps: '', weight: '', help: ''
-        });
-        this.state = "active";
+      this.addFields = function(){        
+          this.showFields = true;
+          this.newFields = [];
+          this.newFields.push({ exercise: '', reps: '', weight: '', help: ''
+          });
+
+          console.log(myForm.workoutName.value);
+
       };
 
+      this.resetForm = function(){
+
+        this.newFields = [];
+        newWorkout = [];
+        myForm.workoutName = "";
+        myForm.rounds.value = "";
+        myForm.difficulty.value = "";
+        myForm.exLength.value = "";
+        exerciseArray = [];
+        repsArray = [];
+        weightArray = [];
+        helpArray = [];
+        this.preview = [];
+
+      };
 
       // This function adds a single exercise to the workout
-      this.addSingleExercise = function(subForm) {
+      this.addSingleExercise = function() {
+        
         // workout preview
-
-        if (myForm.workoutName.$dirty) {
-          newWorkoutCtrl.previewWorkout = true;
-        }
-
-        // Form validation:
-        if(subForm.$valid && subForm.$dirty){
+          showPreview = true;
+          console.log(showPreview);
+        
         var newExercise = this.newFields;
-        newWorkout.push(newExercise[0]);
+        newWorkout.push(newExercise[newExercise.length - 1]);
         this.preview = newWorkout;
 
         // adds exercises and specifications to arrays
@@ -62,15 +87,9 @@ workoutApp.directive('newWorkout', function(){
         // empty input fields
         this.addFields();
         
-        // hides "add an exercise" button
-        this.state = "inactive";
         //hide "new exercise" fields
         this.showFields = false;
-
-
-      } else {
-        this.formError = true;
-      }
+           
 
 
       };
@@ -91,18 +110,22 @@ workoutApp.directive('newWorkout', function(){
 
         // Organizing exercises information to add to available workout
 
+        this.addSingleExercise();
+
         if(myForm.$valid && myForm.$dirty){
-          var newWorkout = {
-          name: myForm.workoutName,
+          
+          newWorkout = {
+          name: myForm.workoutName.value,
           exercises: exerciseArray,
           reps: repsArray,
-          rounds: myForm.rounds,
+          rounds: myForm.rounds.value,
           weight: weightArray,
           help: helpArray,
-          length: myForm.exLength,
-          difficulty: myForm.difficulty
+          length: myForm.exLength.value,
+          difficulty: myForm.difficulty.value
           };
 
+          console.log(newWorkout);
           // Adding workout to available workout list
           availableWorkouts.push(newWorkout);
 
@@ -114,6 +137,9 @@ workoutApp.directive('newWorkout', function(){
 
         }
 
+          // clear new workout fields
+
+          this.resetForm();
       };
     },
     controllerAs: 'newWorkoutCtrl'

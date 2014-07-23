@@ -1,59 +1,64 @@
-<div class="workout-preview" ng-show=" previewWorkout">
+<div class="workout-preview">
+	
+	<!-- maybe use ng-show here to show and hide the div -->
+	
 	<h2>Workout Preview</h2>
-	<span class="preview"><strong>Name: </strong>{{myForm.workoutName}}</span>
+	<span class="preview"><strong>Name: {{myForm.workoutName.value}}</strong> </span>
    	<ul ng-repeat="workout in newWorkoutCtrl.preview" class="chosen-workout-details">
-  	  <li><strong>Exercise:</strong> {{workout.exercise}}</li>
+  	  <li><strong>Exercise: </strong>{{workout.exercise}}</li>
   	  <li><strong>Reps:</strong> {{workout.reps}}</li>
   	  <li><strong>Weight:</strong> {{workout.weight}}</li>
   	  <li><strong>Help</strong><a class="help" ng-href="{{workout.help}}"> link</a></li>
   	  <span class="remove" ng-click="newWorkoutCtrl.removeExercise(workout)">Remove this</span>
     </ul>
-    <span class="block preview"><strong>Sets:</strong> <span ng-bind="myForm.rounds"></span></span>
-  	<span class="block preview"><strong>Difficulty:</strong> {{myForm.difficulty}}</span>
-  	<span class="block preview"><strong>Approx. Length (minutes):</strong> {{myForm.exLength}}</span>
+    <span class="block preview"><strong>Sets:</strong>{{myForm.rounds.value}}</span>
+  	<span class="block preview"><strong>Difficulty:</strong> {{myForm.difficulty.value}}</span>
+  	<span class="block preview"><strong>Approx. Length (minutes):</strong> {{myForm.exLength.value}}</span>
 </div>
 
 <form class="form" name="myForm" novalidate>
-	<label class="block" for="workoutName">Name
-	<input class="main-input" type="text" name="workoutName" ng-model="myForm.workoutName" ng-minlength=3 ng-class="{'notValid' : myForm.workoutName.$invalid && myForm.workoutName.$dirty }" required><span ng-show="myForm.workoutName.$error.required">* Required field</span></label>
+	<label class="block" for="workoutName">Name</label>
+	<input class="main-input" type="text" name="workoutName" ng-model="myForm.workoutName.value" ng-minlength=3 ng-class="{'notValid' : myForm.workoutName.$invalid && myForm.workoutName.$dirty }" required>
 
-	<label class="block" for="rounds">Total sets<span ng-show="myForm.rounds.$error.required">*</span>
-	<select class="main-input" ng-model="myForm.rounds" ng-options="number as number for number in newWorkoutCtrl.scale" name="rounds" required>
+	<label class="block" for="rounds">Total sets<span ng-show="myForm.rounds.$invalid && myForm.rounds.$dirty">*</span>
+	<select class="main-input" ng-model="myForm.rounds.value" ng-options="number as number for number in newWorkoutCtrl.scale" name="rounds" required>
 	<option value="" ng-disabled="true"></option>
 	</select></label>
 
-	<label class="block" for="difficulty">Difficulty<span ng-show="myForm.difficulty.$error.required">*</span>
-	<select class="main-input" ng-model="myForm.difficulty" ng-options="number as number for number in newWorkoutCtrl.scale" name="difficulty" id="" required>
+	<label class="block" for="difficulty">Difficulty
+	<span ng-show="myForm.difficulty.$invalid && myForm.difficulty.$dirty">*</span><select class="main-input" ng-model="myForm.difficulty.value" ng-options="number as number for number in newWorkoutCtrl.scale" name="difficulty" id="" required>
 	<option value="" ng-disabled="true"></option>
 	</select></label>
 
 	<label class="block" for="exLength">Approx. length (minutes)<span ng-show="myForm.exLength.$error.required">*</span>
-	<select class="main-input" ng-model="myForm.exLength" ng-options="number as number for number in newWorkoutCtrl.minutes" name="exLength" id="" required>
+	<select class="main-input" ng-model="myForm.exLength.value" ng-options="number as number for number in newWorkoutCtrl.minutes" name="exLength" id="" required>
 	</select></label>
 
 	<button ng-click="newWorkoutCtrl.addFields()">{{newWorkoutCtrl.showFields ? "Clean fields below" : "Add exercise"}}</button>	
+
+
 	<!-- NEW FIELDS -->
-	<ng-form name="subForm" ng-repeat="myForm in newWorkoutCtrl.newFields">
+	<div ng-form name="subForm" ng-repeat="myForm in newWorkoutCtrl.newFields">
 		<label class="block" for="exercise">Exercise
 		<input class="form-input" type="text" name="exercise" ng-model="myForm.exercise" ng-minlength=3 ng-class="{'notValid' : subForm.exercise.$invalid && subForm.exercise.$dirty }" required></label>
 		<span class="block error" ng-show="subForm.exercise.$error.required">Required field</span>
 
 		<label class="block" for="reps">Reps
-		<input class="form-input" type="number" name="reps" ng-model="myForm.reps" min=1 ng-class="{'notValid' : subForm.reps.$invalid && subForm.reps.$dirty }" required></label>
+		<input class="form-input" type="number" name="reps" ng-model="myForm.reps" min=1 ng-class="{'notValid' : subForm.reps.$invalid && subForm.reps.$dirty}" required></label>
 		<span class="block error" ng-show="subForm.reps.$error.required" >Required field</span>
 
 		<label class="block" for="weight">Weight
-		<input class="form-input" type="text" name="weigth" ng-model="myForm.weight" ng-minlength=1 ng-class="{'notValid' : subForm.weight.$invalid && subForm.weight.$dirty }" required></label>
+		<input class="form-input" type="text" name="weigth" ng-model="myForm.weight" ng-minlength=1 ng-class="{'notValid' : subForm.weight.$invalid && subForm.weight.$dirty}" required></label>
 		<span class="block error" ng-show="subForm.weigth.$error.required">Required field</span>
 
 		<label class="block" for="help">Help link
-		<input class="form-input" type="url" name="help" ng-model="myForm.help" ng-class="{'notValid' : subForm.help.$invalid}"></label>
+		<input class="form-input" type="url" name="help" ng-model="myForm.help" ng-class="{'notValid' : subForm.help.$invalid}" placeholder="http://www.example.com/exercise"></label>
 		<span class="block error" ng-show="subForm.help.$error.url">Must be a link</span>
 
 		<span class="block" ng-show="newWorkoutCtrl.formError">Fields in red are invalid.</span>
 
-		<button ng-click="newWorkoutCtrl.addSingleExercise(subForm)">Add exercise to Workout</button>
-	</ng-form>
+		<button ng-click="newWorkoutCtrl.addSingleExercise()">Add exercise to Workout</button>
+	</div>
 	<span class="error block" ng-show="newWorkoutCtrl.globalFormError">There are errors in this form.</span>
-	<input type="submit" class="submit" value="Done" ng-click="newWorkoutCtrl.addWorkout(myForm)">
+	<input type="submit" class="submit" value="Done" ng-click="newWorkoutCtrl.addWorkout(myForm, subForm)">
 </form>

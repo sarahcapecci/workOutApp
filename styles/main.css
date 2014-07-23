@@ -404,3 +404,7 @@ select {
 .notValid {
   border: 1px solid red;
 }
+
+.show {
+  display: block;
+}
