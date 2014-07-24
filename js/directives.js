@@ -136,7 +136,9 @@ workoutApp.directive('newWorkout', function(){
         // Organizing exercises information to add to available workout
 
         //perfect scenario - user uses form correctly
-        if(subForm.$dirty && subForm.$valid){
+        if (subForm === undefined) {
+          return false;
+        } else if (subForm.$dirty && subForm.$valid){
           this.addSingleExercise(subForm);
           this.newWorkout(myForm);
         } else {

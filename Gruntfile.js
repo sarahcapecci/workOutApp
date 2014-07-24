@@ -30,18 +30,38 @@ module.exports = function(grunt) {
 				src: 'styles/main.css'
 			}
 		},
+		cssmin: {
+		  minify: {
+		    expand: true,
+		    cwd: 'styles/',
+		    src: ['*.css', '!*.min.css'],
+		    dest: 'finals/style/',
+		    ext: '.min.css'
+		  }
+		},
+	    uglify: {
+	        my_target: {
+	          files: [{
+	              expand: true,
+	   			  cwd: 'js/',
+	              src: '*.js',
+	              dest: 'finals/js/',
+	              ext: '.min.js'
+	          }]
+	        }
+	    },
 		//watch file changes and recompile if necessary
 		watch: {
 			css: {//task
 			    files: 'styles/*.scss', //where to watch
-			    tasks: ['sass','autoprefixer'], 
+			    tasks: ['sass','autoprefixer', 'cssmin'], 
 			    options: {
 			      livereload: true
 			    }
 			},
 			javascript: {
 				files: ['js/controllers.js', 'js/directives.js', 'js/modules.js'],
-				tasks: ['jshint'],
+				tasks: ['jshint', 'uglify'],
 				options: {
 					livereload: true
 				}
@@ -51,6 +71,8 @@ module.exports = function(grunt) {
 	
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-sass');
+	grunt.loadNpmTasks('grunt-contrib-cssmin');
+	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-autoprefixer');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 
