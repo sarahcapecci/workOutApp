@@ -22,7 +22,7 @@
 		<option id="default-option" value="" ng-disabled="true">Choose one</option></select>
 		<input class="submit" type="submit" value="Add" ng-click="addWorkout(selectedWorkout)"/>
 	<span class="add-workout">Didn't find a good workout?
-		<button ng-class="{'cancel' : newWorkoutCtrl.showForm != false}" ng-click="newWorkoutCtrl.showForm = !newWorkoutCtrl.showForm">{{newWorkoutCtrl.showForm ? "Cancel" : "Add new"}}</button>
+		<button ng-class="{'cancel' : newWorkoutCtrl.showForm != false}" ng-click="newWorkoutCtrl.showForm = !newWorkoutCtrl.showForm; newWorkoutCtrl.resetForm()">{{newWorkoutCtrl.showForm ? "Cancel" : "Add new"}}</button>
 	</span>
 	</div>
 
