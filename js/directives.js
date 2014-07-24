@@ -10,7 +10,6 @@ workoutApp.directive('workOutDetail', function(){
   };
 });
 
-
 // Logic behind form. Adding fields, displaying preview of workout and adding workout to available list
 
 workoutApp.directive('newWorkout', function(){
@@ -39,12 +38,12 @@ workoutApp.directive('newWorkout', function(){
 
       // this function adds fields to the form, so the user can add another single exercise (enables the above function)
 
-      this.addFields = function(){        
+      this.addFields = function(){
+        
           this.showFields = true;
           this.newFields = [];
           this.newFields.push({ exercise: '', reps: '', weight: '', help: ''
           });
-
       };
 
       // resets the form after a workout is added
@@ -69,9 +68,6 @@ workoutApp.directive('newWorkout', function(){
           getSpan[i].innerHTML = " ";
           getSpan[i].innerText = " ";
         }
-            
-
-
         //erases previous global error messages
         this.globalFormError = false;
       };
@@ -95,7 +91,7 @@ workoutApp.directive('newWorkout', function(){
         //hide "new exercise" fields
         this.showFields = false;
         // clean previous error messages
-        this.formError = true;
+        this.formError = false;
 
       } else {
         this.formError = true;
@@ -112,16 +108,12 @@ workoutApp.directive('newWorkout', function(){
       console.log(index);
       };
 
-// This function adds a new workout to the existing "Availabe Workouts"
+      // New complete workout submission
 
-      this.addWorkout = function(myForm){
-        var subForm = myForm.subForm;
-        // Organizing exercises information to add to available workout
-
+      this.newWorkout = function(myForm) {
 
         if(myForm.$valid && myForm.$dirty){
-          
-          this.addSingleExercise(subForm);
+        
           newWorkout = {
           name: myForm.workoutName.value,
           exercises: exerciseArray,
@@ -142,8 +134,22 @@ workoutApp.directive('newWorkout', function(){
           // clear new workout fields
           this.resetForm();
         } else {
-          this.globalFormError = true;         
+          this.globalFormError = true;
+        }
+      };
+  
+  // This function adds a new workout to the existing "Availabe Workouts"
 
+      this.addWorkout = function(myForm){
+        var subForm = myForm.subForm;
+        // Organizing exercises information to add to available workout
+
+        //perfect scenario - user uses form correctly
+        if(subForm.$dirty && subForm.$valid){
+          this.addSingleExercise(subForm);
+          this.newWorkout(myForm);
+        } else {
+          this.globalFormError = true; 
         }
 
       };

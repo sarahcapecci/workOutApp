@@ -6,11 +6,11 @@
   	  <li><strong>Reps:</strong> {{workout.reps}}</li>
   	  <li><strong>Weight:</strong> {{workout.weight}}</li>
   	  <li><strong>Help</strong><a class="help" ng-href="{{workout.help}}"> link</a></li>
-  	  <button class="remove" ng-click="newWorkoutCtrl.removeExercise(workout)">Remove this</button>
+  	  <a class="remove" ng-click="newWorkoutCtrl.removeExercise(workout)">Remove this</a>
     </ul>
-    <p class="block preview"><strong>Sets:<span ng-bind="myForm.rounds.value"></span></strong></p>
-  	<p class="block preview"><strong>Difficulty:<span ng-bind="myForm.difficulty.value"></span></strong></p>
-  	<p class="block preview"><strong>Approx. Length (minutes):<span ng-bind="myForm.exLength.value"></span></strong></p>
+    <p class="block preview"><strong>Sets: <span ng-bind="myForm.rounds.value"></span></strong></p>
+  	<p class="block preview"><strong>Difficulty: <span ng-bind="myForm.difficulty.value"></span></strong></p>
+  	<p class="block preview"><strong>Approx. Length (minutes): <span ng-bind="myForm.exLength.value"></span></strong></p>
 </div>
 
 <form class="form" name="myForm" novalidate>
