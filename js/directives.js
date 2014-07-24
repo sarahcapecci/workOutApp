@@ -10,6 +10,7 @@ workoutApp.directive('workOutDetail', function(){
   };
 });
 
+
 // Logic behind form. Adding fields, displaying preview of workout and adding workout to available list
 
 workoutApp.directive('newWorkout', function(){
@@ -23,8 +24,6 @@ workoutApp.directive('newWorkout', function(){
       this.scale = [1,2,3,4,5,6,7,8,9,10];
       this.minutes = [5,10,15,20,25,30,35,40,45,50,60,70,80,90];
 
-      console.log(myForm);
-      console.log(myForm.subForm);
       //default values
       myForm.workoutName.value = "";
       myForm.rounds.value = "";
@@ -54,7 +53,6 @@ workoutApp.directive('newWorkout', function(){
         this.newFields = [];
         newWorkout = [];
         myForm.workoutName.value = "";
-        console.log(myForm.workoutName.value);
         myForm.rounds.value = "";
         myForm.difficulty.value = "";
         myForm.exLength.value = "";
@@ -63,6 +61,16 @@ workoutApp.directive('newWorkout', function(){
         weightArray = [];
         helpArray = [];
         this.preview = [];
+        // Cleaning up workout preview
+        var workoutPreview = document.getElementById('workout-preview');
+        var getSpan = workoutPreview.getElementsByTagName('span');
+
+        for (var i = 0; i < 4; i++) {
+          getSpan[i].innerHTML = " ";
+          getSpan[i].innerText = " ";
+        }
+            
+
 
         //erases previous global error messages
         this.globalFormError = false;
@@ -125,7 +133,6 @@ workoutApp.directive('newWorkout', function(){
           difficulty: myForm.difficulty.value
           };
 
-          console.log(newWorkout);
           // Adding workout to available workout list
           availableWorkouts.push(newWorkout);
 

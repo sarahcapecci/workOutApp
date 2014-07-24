@@ -1,19 +1,16 @@
-<div class="workout-preview">
-	
-	<!-- maybe use ng-show here to show and hide the div -->
-	
+<div class="workout-preview" id="workout-preview">
 	<h2>Workout Preview</h2>
-	<span class="preview"><strong>Name: <span ng-bind="myForm.workoutName.value"></span></strong> </span>
+	<p class="preview"><strong>Name: <span ng-bind="myForm.workoutName.value"></span></strong> </p>
    	<ul ng-repeat="workout in newWorkoutCtrl.preview" class="chosen-workout-details">
   	  <li><strong>Exercise: </strong>{{workout.exercise}}</li>
   	  <li><strong>Reps:</strong> {{workout.reps}}</li>
   	  <li><strong>Weight:</strong> {{workout.weight}}</li>
   	  <li><strong>Help</strong><a class="help" ng-href="{{workout.help}}"> link</a></li>
-  	  <span class="remove" ng-click="newWorkoutCtrl.removeExercise(workout)">Remove this</span>
+  	  <button class="remove" ng-click="newWorkoutCtrl.removeExercise(workout)">Remove this</button>
     </ul>
-    <span class="block preview"><strong>Sets:<span ng-bind="myForm.rounds.value"></span></strong></span>
-  	<span class="block preview"><strong>Difficulty:<span ng-bind="myForm.difficulty.value"></span></strong></span>
-  	<span class="block preview"><strong>Approx. Length (minutes):<span ng-bind="myForm.exLength.value"></span></strong></span>
+    <p class="block preview"><strong>Sets:<span ng-bind="myForm.rounds.value"></span></strong></p>
+  	<p class="block preview"><strong>Difficulty:<span ng-bind="myForm.difficulty.value"></span></strong></p>
+  	<p class="block preview"><strong>Approx. Length (minutes):<span ng-bind="myForm.exLength.value"></span></strong></p>
 </div>
 
 <form class="form" name="myForm" novalidate>
